@@ -82,7 +82,7 @@ function pathOne() {
         } else if (bottleChoice === 2) {
             pinkBottle();
             
-        } else if (botteChoice === 3) {
+        } else if (bottleChoice === 3) {
             whiteBottle();
             
         } else if (bottleChoice === 4) {
@@ -92,15 +92,8 @@ function pathOne() {
         
         // function for green bottle
         function greenBottle() {
-            alert(`You pick up the green bottle, and some of the liquid accidentally spills on your sweater. The green liquid begins to spread.`);
-            let corrosive = +prompt(`Do you 1) take off your sweater, or 2) ignore it and continue looking at the lab?`);
-            
-            if (corrosive === 1) {
-                alert(`You take off your sweater and continue on your journey, turning to the other two bottles.`);
-                putBack();
-            } else if (corrosive === 2) {
-                putBackDie();
-            }
+            alert(`You pick up the green bottle, and some of the liquid accidentally spills on your sweater. The green liquid begins to spread. It is corrosive!`);
+            dead();
         }
         
         // function for pink bottle
@@ -155,37 +148,6 @@ function pathOne() {
                 
             }
         
-        // put back bottle die world (green / corrosive) NOT FINISHED     
-            
-        function putBackDie() {
-            let dying = +prompt(`You put the vial back, and look at the table again. But your sweater is really itchy, now... and your vision is kind of blurry... which bottle do you take? 1, 2, or 3? The colours are all blurry anyway... `);
-            
-            if (dying === 1) {
-                alert(`You pick up the first bottle in front of you, some more of its liquid spilling on you. Oh no! That was the green vial, and it turns out, it is a corrosive liquid, that had already begun killing you the longer it had contact with your skin, ${playerName}. That last part dealt you the final blow!`);
-                dead();
-                
-            } else if (dying === 2) {
-                let heal = +prompt(`You pick up the second bottle in front of you, and can just make out a label telling you to drink it. Do you? If yes, type '1', if not, type '2'.`);
-                
-                if (heal === 1) {
-                    confirm(`You are healed! Return to searching the room, now.`);
-                    stay();
-                } else if (heal === 2) {
-                    alert(`Unfortunately, the green liquid that spilled on your sweater was corrosive, and it was slowly killing you. Drinking the pink healing potion was your last chance. On its own, pink is deadly, but in contrast, it would have saved your life.`);
-                    dead();
-                }
-                
-            } else if (dying === 3) {
-                alert(`Alas, it matters not. Unfortunately, the green liquid that spilled on your sweater was corrosive, and it was slowly killing you.`);
-                dead();
-                
-            } else if (dying === 4) {
-                stay();
-                
-            }
-            
-        }
-        
         // put back function ends
         
     }
@@ -237,6 +199,8 @@ function pathTwo() {
         escapeThree();
     }
 }
+
+
 //final three paths for gym
 function escapeOne() {
     let ladder=+prompt(`There seems to be nothing else in the gym other then that key in your pocket. Do you (1) cry or (2) try climbing the walls to reach the light?`);
@@ -275,6 +239,72 @@ function escapeThree() {
         pathThree();
     }
 }
+
+// STAY IN LIBRARY
+function pathThree() {
+    alert(`You look around the library and you find a book on haunted places, a little sofa with a book about breaking out of places, and you find a goosebumps book.`);
+    let libraryOne = +prompt ("Would you like to 1. look into the haunted places book? 2. Look into the book about breaking out of places, or 3. Read a goosebumps novel")
+    if (libraryOne === 1) {
+       alert ("You look into the book and it talks about ghosts causing books to fall in libraries and different things like that, you think nothing of it,")
+       pathThree();
+    } else if (libraryOne === 2) {
+        alert ("You read the book and notice someone had writen the code 9623")
+        alert ("You think nothing of it but make sure to remember the code, just in case")
+        pathThree();
+    }else if (libraryOne === 3) {
+         alert ("You start reading the book and realize the characters are in a very simular situation as you and they find a secret door where they then escape")
+         let secretDoor = +prompt ("Would you like to look for a hidden door? 1. yes 2. no")
+         if (secretDoor === 1) {
+             let door = Randomizer.nextInt (1,100)
+             let findDoor;
+             while (findDoor != door) {
+                 findDoor = +prompt ("Guess a number 1 through 100 once you find the number you have found the door");
+                 if (findDoor > door) {
+                     alert ("That's too high!");
+                 } else if (findDoor < door) {
+                     alert ("That's too low!");
+                 }
+            }
+             alert ("You pull a book down and out comes a secret door!")
+                alert ("You must find the code for the door, you only have 3 attempts to get the code right ");
+                let code = 9623
+                let codeAnswer;
+                let codeTries = 3
+                while (codeAnswer != code) {
+                    codeTries = 3
+                    codeAnswer=+prompt("Whats the code?");
+                    if (codeAnswer=="9623") { 
+                        alert('The door opens');
+                        alert("You see a long hallway with a light at the end however it is guarded by a ghost who will only let you through if you answer its riddle.");
+                        let riddleAnswer = "skull"
+                        let riddle = prompt("I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty. What am I?")
+                            if (riddle = riddleAnswer) {
+                            alert("The ghost lets you through and you make a run for it")
+                            win();
+                            } else if (riddle != riddleAnswer) {
+                            alert("The ghost is dissapointed in you and kills you")
+                            dead();
+                            } 
+                        }else {
+                            codeTries = codeTries - 1
+                            alert("You have left "+codeTries+" attempts");
+                        }
+                            if( codeTries === 0) {
+                                alert("Suddenly the walls start to close in and you get crushed")
+                                dead();
+                        }
+                    // ends
+                    
+                    
+                }
+         } else if (`secretDoor === 2`) {
+             alert ("You decide theres nothing of use in the library");
+            startGame(); 
+         }
+    }
+}
+
+
 // dead screen - link this if the player dies 
 
 function dead() {
