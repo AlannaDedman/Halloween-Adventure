@@ -1,0 +1,22 @@
+body {
+    background-color:black;
+ }
+ 
+ 
+ p {
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+ }
+ 
+ 
+ h1 {
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+    font-style: italic;
+ }
+ 
+ 
+ h2 {
+    color: white;
+ }
+ 
